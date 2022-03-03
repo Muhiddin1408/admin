@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import Workers
 # Register your models here.
 
 
@@ -11,9 +11,9 @@ class UserAdmin(admin.ModelAdmin):
     # fields = ('full_name', 'salary', 'shop', 'telegram_id', 'bons')
 
     class Meta:
-        model = User
+        model = Workers
         fields = ('full_name', 'salary', 'shop', 'telegram_id', 'bons')
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(Workers, UserAdmin)
 

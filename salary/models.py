@@ -1,9 +1,12 @@
 from django.db import models
 
 
-class User(models.Model):
+class Workers(models.Model):
     full_name = models.CharField(max_length=125)
-    shop = models.CharField(max_length=125)
+    phone = models.CharField(max_length=12)
+    age = models.IntegerField(default=0)
+    job = models.CharField(max_length=125)
+    birthday = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     salary = models.IntegerField(default=0)
     telegram_id = models.CharField(max_length=125)
     bons = models.IntegerField(default=0)
