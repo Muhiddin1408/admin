@@ -3,32 +3,7 @@
 
 {% block content %}
 
-        <div id="main-wrapper">
 
-        <div class="page-wrapper">
-
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Charts</h4>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
     <table>
     <tr>
         <td style="width: 35%;">User</td>
@@ -36,7 +11,7 @@
         <td style="width: 20%;">Shop</td>
         <td style="width: 15%;">Salary</td>
         <td style="width: 15%;">Bons</td>
-        <td style="width: 10%;">#</td>
+        <td style="width: 10%;">######</td>
 
     </tr>
         </table>
@@ -49,7 +24,8 @@
         <td style="width: 20%;">{{user.shop}}</td>
         <td style="width: 15%;"> {{user.salary}}</td>
         <td style="width: 15%;"> {{user.bons}}</td>
-        <td style="width: 10%;"> <a href="{%url 'userprofil' user.id %}"><button>More</button></a></td>
+        <td style="width: 10%;"> <a href="{%url 'userprofil' user.id %}"><button class="btn-primary">More</button></a></td>
+        <hr>
     </tr>
         </table>
 
@@ -57,9 +33,6 @@
     {% endfor %}
 
 
-</div>
-        </div>
-        </div>
 
 
 {% endblock %}
