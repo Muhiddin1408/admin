@@ -1,11 +1,14 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib import messages
+from django.db.models import Q
+from django.views import View
+
 from .models import Workers
-from .forms import UserEditForm, AddBonsForm, AddUserForm
+from .forms import UserEditForm, AddBonsForm, AddUserForm, WorkersSearchForm
 # Create your views here.
-from django.views.generic import ListView, UpdateView, CreateView
+from django.views.generic import ListView, UpdateView
+
 
 
 class UserView(ListView):
@@ -109,3 +112,27 @@ def addUser(request):
         user.save()
         return redirect('users')
 
+
+# Search Salary
+
+
+
+
+class SearchResultsView(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('q')
+        results = Workers.objects.filter(
+        full_name=query
+        )
+        return render(request, 'admin/search.html', context={
+        'title': 'Поиск',
+        'result': results,
+        })
+
+
+def salaryProfilView(request, id):
+    user = Workers.objects.get(id=id)
+    context = {
+        'user': user
+    }
+    return render(request, 'admin/salaryprofil.html', context)

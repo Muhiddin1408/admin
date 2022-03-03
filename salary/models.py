@@ -10,6 +10,7 @@ class Workers(models.Model):
     salary = models.IntegerField(default=0)
     telegram_id = models.CharField(max_length=125)
     bons = models.IntegerField(default=0)
+    fine = models.IntegerField(default=0)
 
     def __str__(self):
         return self.full_name

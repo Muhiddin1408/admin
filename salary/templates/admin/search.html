@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'search' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
+
+<table>
+
+    <tr>
+        <td style="width: 35%;">User</td>
+
+        <td style="width: 10%;">######</td>
+
+    </tr>
+        </table>
+    {% for i in result %}
+    <table>
+
+    <tr>
+        <td style="width: 35%;">{{i.full_name}}</td>
+
+
+        <td style="width: 10%;"> <a href="{%url 'salaryprofil' i.id %}"><button class="btn-primary">More</button></a></td>
+        <hr>
+    </tr>
+
+    </table>
+{% endfor %}
+
+
+
+{% endblock content %}
