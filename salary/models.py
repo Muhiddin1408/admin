@@ -1,8 +1,9 @@
 from django.db import models
 
 
+
 class Workers(models.Model):
-    CHOICES=(
+    CHOICES = (
         ('true', 'TRUE'),
         ('false', 'FALSE')
     )
@@ -18,7 +19,7 @@ class Workers(models.Model):
     fine = models.IntegerField(default=0)
     give = models.IntegerField(default=0)
     residue = models.IntegerField(default=0)
-    status = models.CharField(max_length=25, choices=CHOICES, default='true')
+    status = models.CharField(max_length=25, choices=CHOICES, default='true', blank=True, null=True)
 
     def __str__(self):
         return self.full_name

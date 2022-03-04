@@ -8,6 +8,12 @@ class UserEditForm(forms.ModelForm):
         fields = ('full_name', 'telegram_id', 'job', 'salary', 'phone', 'birthday','age')
 
 
+class SalaryEditForm(forms.ModelForm):
+    class Meta:
+        model = Workers
+        fields = ('full_name', 'phone', 'job', 'salary', 'bons', 'fine', 'give')
+
+
 class AddBonsForm(forms.ModelForm):
     class Meta:
         model = Workers

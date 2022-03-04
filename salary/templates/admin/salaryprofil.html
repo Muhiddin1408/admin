@@ -95,7 +95,7 @@
                       {{user.bons}}
                     </div>
                     <div class="col-sm-3 text-secondary">
-                      <a href="{% url 'addfine' user.id %}" class="btn btn-info ">+</a>
+                      <a href="{% url 'addbons' user.id %}" class="btn btn-info ">+</a>
                     </div>
                   </div>
                   <hr>
@@ -130,14 +130,12 @@
                     <div class="col-sm-3 text-secondary">
                       {{user.residue}}
                     </div>
-                    <div class="col-sm-3 text-secondary">
-                      <a href="{% url 'addfine' user.id %}" class="btn btn-info ">+</a>
-                    </div>
+
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="{% url 'edit_user' user.id %}">Edit</a>
+                      <a class="btn btn-info " href="{% url 'edit_salary' user.id %}">Edit</a>
                     </div>
                   </div>
                 </div>

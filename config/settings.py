@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'salary',
-    'search_views',
+    # 'account',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +52,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+LOGIN_REDIRECT_URL = '/api/admin/users'
+LOGOUT_REDIRECT_URL = '/account/login/'
+# AUTH_USER_MODEL = 'account.User'
 
 TEMPLATES = [
     {
