@@ -65,7 +65,7 @@ class AddBons(UpdateView):
 
         user.bons += int(form.data['bons'])
         user.save()
-        return HttpResponseRedirect(reverse_lazy('users'))
+        return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
 
 #
 # class AddUser(CreateView):
@@ -136,3 +136,45 @@ def salaryProfilView(request, id):
         'user': user
     }
     return render(request, 'admin/salaryprofil.html', context)
+
+
+
+class AddFine(UpdateView):
+    def get(self, request, *args, **kwargs):
+        form = AddBonsForm
+        user = Workers.objects.get(id=self.kwargs['id'])
+        context = {
+            'form': form,
+            'user': user
+        }
+        return render(request, 'admin/addfine.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = AddBonsForm(request.POST)
+        user = Workers.objects.get(id=self.kwargs['id'])
+
+        user.fine += int(form.data['fine'])
+        user.save()
+
+        return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
+
+
+class AddGive(UpdateView):
+    def get(self, request, *args, **kwargs):
+        form = AddBonsForm
+        user = Workers.objects.get(id=self.kwargs['id'])
+        context = {
+            'form': form,
+            'user': user
+        }
+        return render(request, 'admin/addgive.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = AddBonsForm(request.POST)
+        user = Workers.objects.get(id=self.kwargs['id'])
+
+        user.give += int(form.data['give'])
+        user.save()
+
+        return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
+

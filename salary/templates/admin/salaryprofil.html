@@ -92,10 +92,10 @@
                       <h6 class="mb-0">Bonus</h6>
                     </div>
                     <div class="col-sm-3 text-secondary">
-                      {{user.bonus}}
+                      {{user.bons}}
                     </div>
                     <div class="col-sm-3 text-secondary">
-                      <a href="{% url 'addbons' user.id %}" class="btn btn-info ">+</a>
+                      <a href="{% url 'addfine' user.id %}" class="btn btn-info ">+</a>
                     </div>
                   </div>
                   <hr>
@@ -105,6 +105,30 @@
                     </div>
                     <div class="col-sm-3 text-secondary">
                       {{user.fine}}
+                    </div>
+                    <div class="col-sm-3 text-secondary">
+                      <a href="{% url 'addfine' user.id %}" class="btn btn-info ">+</a>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Berilgan summa</h6>
+                    </div>
+                    <div class="col-sm-3 text-secondary">
+                      {{user.give}}
+                    </div>
+                    <div class="col-sm-3 text-secondary">
+                      <a href="{% url 'addgive' user.id %}" class="btn btn-info ">+</a>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Qolgan summa</h6>
+                    </div>
+                    <div class="col-sm-3 text-secondary">
+                      {{user.residue}}
                     </div>
                     <div class="col-sm-3 text-secondary">
                       <a href="{% url 'addfine' user.id %}" class="btn btn-info ">+</a>

@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="background:#f4f4f4;">
+    <div class="container">
+        <form method="post">
+            <div style="display: grid;place-items: center;">
+                {% csrf_token %}
+                <label> <h4>Siz bu ishchiga {{user.residue}} so'm berolasiz!</h4></label>
+                <input style="place-items: center" type="number" name="give" required id="id_title"><br>
+
+                <input type="submit" style="background-color:#3397C8; padding:4px 16px;border-radius:8px;color:#fff;border:0 " value="Send">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content%}
