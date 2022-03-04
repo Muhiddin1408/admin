@@ -55,7 +55,7 @@ ROOT_URLCONF = 'config.urls'
 LOGIN_REDIRECT_URL = '/api/admin/users'
 LOGOUT_REDIRECT_URL = '/account/login/'
 # AUTH_USER_MODEL = 'account.User'
-
+TOKEN = '1998336097:AAFDldMECok0SJFx-wipgM6R3W3FuKpw3fQ'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

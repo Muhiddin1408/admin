@@ -75,6 +75,7 @@ class AddBons(UpdateView):
         user = Workers.objects.get(id=self.kwargs['id'])
 
         user.bons += int(form.data['bons'])
+        user.residue += int(form.data['bons'])
         user.save()
         return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
 
@@ -208,6 +209,7 @@ class AddFine(UpdateView):
         user = Workers.objects.get(id=self.kwargs['id'])
 
         user.fine += int(form.data['fine'])
+        user.residue -= int(form.data['five'])
         user.save()
 
         return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
@@ -230,6 +232,7 @@ class AddGive(UpdateView):
         user = Workers.objects.get(id=self.kwargs['id'])
 
         user.give += int(form.data['give'])
+        user.residue -= int(form.data['give'])
         user.save()
 
         return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
