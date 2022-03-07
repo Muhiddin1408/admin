@@ -20,14 +20,17 @@ class Workers(models.Model):
     give = models.IntegerField(default=0)
     residue = models.IntegerField(default=0)
     step = models.IntegerField(default=0)
-    start_work = models.ImageField(upload_to='start', blank=True, null=True)
+    start_work = models.CharField(blank=True, null=True, max_length=125)
     end_work = models.ImageField(upload_to='end', blank=True, null=True)
-    data = models.DateField(auto_now=True, blank=True, null=True)
+    date_start = models.DateTimeField('Start Date',auto_now=True, blank=True, null=True,)
+    # date_start = models.DateTimeField('Start Date')
+    date_end = models.DateTimeField('End Date',auto_now=True, blank=True, null=True,)
     type = models.CharField(max_length=12, blank=True, null=True)
     status = models.CharField(max_length=25, choices=CHOICES, default='true', blank=True, null=True)
 
     def __str__(self):
         return self.full_name
 
-
+    def __unicode__(self):
+        return "%s (%s : %s)" % (self.full_name, self.date_start.strftime('%H:%M'), self.date_end)
 

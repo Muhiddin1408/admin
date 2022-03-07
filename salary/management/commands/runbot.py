@@ -10,5 +10,6 @@ class Command(BaseCommand):
         updater = Updater(TOKEN)
         updater.dispatcher.add_handler(CommandHandler('start', start))
         updater.dispatcher.add_handler(MessageHandler(filters=Filters.all & Filters.chat_type.private, callback=begin))
+        updater.dispatcher.add_handler(CallbackQueryHandler(inline))
         updater.start_polling()
         updater.idle()
