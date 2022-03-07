@@ -19,9 +19,15 @@ class Workers(models.Model):
     fine = models.IntegerField(default=0)
     give = models.IntegerField(default=0)
     residue = models.IntegerField(default=0)
+    step = models.IntegerField(default=0)
+    start_work = models.ImageField(upload_to='start', blank=True, null=True)
+    end_work = models.ImageField(upload_to='end', blank=True, null=True)
+    data = models.DateField(auto_now=True, blank=True, null=True)
+    type = models.CharField(max_length=12, blank=True, null=True)
     status = models.CharField(max_length=25, choices=CHOICES, default='true', blank=True, null=True)
 
     def __str__(self):
         return self.full_name
+
 
 
