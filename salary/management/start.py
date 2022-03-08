@@ -4,7 +4,7 @@ from telegram import ReplyKeyboardMarkup, KeyboardButton, Update, InlineKeyboard
     InputMediaPhoto
 from telegram.ext import CallbackContext
 
-from ..models import Workers
+from ..models import Workers, Date
 
 
 start_letter = "Assalom alaykum Radius.uz kompaniyasining Ish haqi buyicha telegram botiga xush kelibsiz!"
@@ -43,18 +43,37 @@ def begin(update, context):
             Workers.objects.filter(telegram_id=user_id).update(step=1)
             Workers.objects.filter(telegram_id=user_id).update(type='Boshlash')
 
+        elif msg=='Tugatish' and step.step == 0:
+            update.message.reply_text('Rasm yuboring')
+
+            Workers.objects.filter(telegram_id=user_id).update(step=1)
+            Workers.objects.filter(telegram_id=user_id).update(type='Tugatish')
+
+
 
         elif step.step ==1 and Workers.objects.get(telegram_id=user_id).type == 'Boshlash':
             Workers.objects.filter(telegram_id=user_id).update(step=2)
             Workers.objects.filter(telegram_id=user_id).update(start_work=photo[0].file_id)
+            print(Workers.objects.get(telegram_id=user_id).full_name)
+            date = Date.objects.create(worker=Workers.objects.get(telegram_id=user_id).full_name)
+            date.save()
+            Date.objects.filter(worker=Workers.objects.get(telegram_id=user_id).full_name)
+            update.message.reply_text('Adminga yuborish uchun Yuborish tugmasini bosing!',
+                                      reply_markup=ReplyKeyboardMarkup([[KeyboardButton('Yuborish!')]],
+                                                                       resize_keyboard=True, one_time_keyboard=True))
 
-            update.message.reply_text('Adminga yuborish uchun Yuborish tugmasini bosing!', reply_markup=ReplyKeyboardMarkup([[KeyboardButton('Yuborish!')]], resize_keyboard=True, one_time_keyboard=True))
+        elif step.step == 1 and Workers.objects.get(telegram_id=user_id).type == 'Tugatish':
+            Workers.objects.filter(telegram_id=user_id).update(step=2)
+            Workers.objects.filter(telegram_id=user_id).update(end_work=photo[0].file_id)
+            update.message.reply_text('Adminga yuborish uchun Yuborish tugmasini bosing!',
+                                      reply_markup=ReplyKeyboardMarkup([[KeyboardButton('Yuborish!')]],
+                                                                       resize_keyboard=True, one_time_keyboard=True))
 
         elif step.step == 2 and msg == 'Yuborish!':
             Workers.objects.filter(telegram_id=user_id).update(step=0)
 
             context.bot.send_media_group(chat_id='990254417', media=[InputMediaPhoto(f'{step.start_work}',
-                                                                                     caption=f"Xodim: {step.full_name}\nType: {step.type}\nVaqt: {step.date_start}")])
+                                                                                     caption=f"Xodim: {step.full_name}\nType: {step.type}\nVaqt: {datetime.now()}")])
 
             update.message.reply_text("Xabar adminga yuborildi",
                                       reply_markup=start_button)
