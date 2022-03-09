@@ -53,11 +53,13 @@ def begin(update, context):
 
         elif step.step ==1 and Workers.objects.get(telegram_id=user_id).type == 'Boshlash':
             Workers.objects.filter(telegram_id=user_id).update(step=2)
-            Workers.objects.filter(telegram_id=user_id).update(start_work=photo[0].file_id)
-            print(Workers.objects.get(telegram_id=user_id).full_name)
-            date = Date.objects.create(worker=Workers.objects.get(telegram_id=user_id).full_name)
-            date.save()
-            Date.objects.filter(worker=Workers.objects.get(telegram_id=user_id).full_name)
+            Workers.objects.filter(telegram_id=user_id).update(image=photo[0].file_id)
+            Workers.objects.filter(telegram_id=user_id).update(clock_in=datetime.time())
+            Workers.objects.filter(telegram_id=user_id).update(month=datetime.date())
+
+            # date = Date.objects.create(worker=Workers.objects.get(telegram_id=user_id).full_name)
+            # date.save()
+            # Date.objects.filter(worker=Workers.objects.get(telegram_id=user_id).full_name)
             update.message.reply_text('Adminga yuborish uchun Yuborish tugmasini bosing!',
                                       reply_markup=ReplyKeyboardMarkup([[KeyboardButton('Yuborish!')]],
                                                                        resize_keyboard=True, one_time_keyboard=True))
@@ -65,6 +67,7 @@ def begin(update, context):
         elif step.step == 1 and Workers.objects.get(telegram_id=user_id).type == 'Tugatish':
             Workers.objects.filter(telegram_id=user_id).update(step=2)
             Workers.objects.filter(telegram_id=user_id).update(end_work=photo[0].file_id)
+            Workers.objects.filter(telegram_id=user_id).update(clock_out=datetime.time())
             update.message.reply_text('Adminga yuborish uchun Yuborish tugmasini bosing!',
                                       reply_markup=ReplyKeyboardMarkup([[KeyboardButton('Yuborish!')]],
                                                                        resize_keyboard=True, one_time_keyboard=True))

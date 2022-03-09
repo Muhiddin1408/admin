@@ -20,8 +20,10 @@ class Workers(models.Model):
     give = models.IntegerField(default=0)
     residue = models.IntegerField(default=0)
     step = models.IntegerField(default=0)
-    start_work = models.CharField(blank=True, null=True, max_length=125)
-    end_work = models.ImageField(upload_to='end', blank=True, null=True)
+    clock_in = models.TimeField(blank=True, null=True)
+    clock_out = models.TimeField(blank=True, null=True)
+    month = models.DateField(blank=True, null=True)
+    image = models.CharField(blank=True, null=True, max_length=125)
     type = models.CharField(max_length=12, blank=True, null=True)
     status = models.CharField(max_length=25, choices=CHOICES, default='true', blank=True, null=True)
 
@@ -31,11 +33,11 @@ class Workers(models.Model):
 
 
 class Date(models.Model):
-    worker = models.CharField(max_length=125)
-    start = models.TimeField(blank=True, null=True)
-    end = models.TimeField(blank=True, null=True)
+    worker = models.ForeignKey(Workers, on_delete=models.CASCADE)
+    clock_in = models.TimeField(blank=True, null=True)
+    clock_out = models.TimeField(blank=True, null=True)
     work = models.IntegerField(blank=True, null=True)
-    month = models.DateField(auto_created=True)
+    month = models.DateField(blank=True, null=True)
 
 
 
