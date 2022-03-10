@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% for i in dates%}
+<button>{i.month}</button>
+{%endfor%}
+{% endblock content %}

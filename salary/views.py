@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.views import View
 
-from .models import Workers
+from .models import Workers, Date
 from .forms import UserEditForm, AddBonsForm, AddUserForm, WorkersSearchForm, SalaryEditForm
 # Create your views here.
 from django.views.generic import ListView, UpdateView, CreateView, TemplateView
@@ -140,8 +140,6 @@ def addUser(request):
 # Search Salary
 
 
-
-
 class SearchResultsView(View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -238,3 +236,34 @@ class AddGive(UpdateView):
         return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
 
 
+class CalendarView(TemplateView):
+    model = Workers
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+        context = super().get_context_data(**kwargs)
+        context['users'] = Workers.objects.all()
+        return render(request, 'calendar/calendar.html', context)
+
+
+class DateView(TemplateView):
+    model = Workers
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+        context = super().get_context_data(**kwargs)
+        print(Workers.objects.filter(id=self.kwargs['id']))
+        context['dates'] = Date.objects.filter(worker=Workers.objects.filter(id=self.kwargs['id']))
+        return render(request, 'calendar/date.html', context)
+
+
+# def dateView(request, id):
+#     if not request.user.is_authenticated:
+#         return HttpResponseRedirect(reverse_lazy('login'))
+#     date = Date.objects.filter(worker=Workers.objects.filter(id=id))
+#     context = {
+#         'dates': date
+#     }
+#     return render(request, 'calendar/date.html', context)
