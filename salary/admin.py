@@ -3,6 +3,9 @@ from .models import Workers, Date
 # Register your models here.
 
 
+class DateAdmin(admin.ModelAdmin):
+    list_display = ['month']
+
 class UserAdmin(admin.ModelAdmin):
     class Meta:
         model = Workers
@@ -10,5 +13,5 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Workers, UserAdmin)
-admin.site.register(Date)
+admin.site.register(Date, DateAdmin)
 

@@ -103,12 +103,16 @@ def begin(update, context):
                 out = hours+" soat "+mint+" minut"
                 return out
             print("hjb",time_diff(obj.clock_out,obj.clock_in))
+            m=str(obj.month).split('.')
+            m=int(m[1])
+            print(m)
             data = Date.objects.create(
                 worker=obj,
                 clock_in=obj.clock_in,
                 clock_out=obj.clock_out,
                 work=time_diff(obj.clock_out,obj.clock_in),
-                month=obj.month)
+                month=obj.month,
+                type_month=m)
             data.save()
             update.message.reply_text('Adminga yuborish uchun Yuborish tugmasini bosing!',
                                       reply_markup=ReplyKeyboardMarkup([[KeyboardButton('Yuborish!')]],

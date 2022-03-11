@@ -3,6 +3,8 @@
 
 {% block content %}
 {% for i in dates%}
-<button>{i.month}</button>
+{%if i.type_month == "3"  %}
+<a href="{% url 'day' i.id %}"><button>{{i.month}}</button></a>
+{%endif%}
 {%endfor%}
 {% endblock content %}

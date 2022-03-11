@@ -254,16 +254,16 @@ class DateView(TemplateView):
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
         context = super().get_context_data(**kwargs)
-        print(Workers.objects.filter(id=self.kwargs['id']))
-        context['dates'] = Date.objects.filter(worker=Workers.objects.filter(id=self.kwargs['id']))
+        context['dates'] = Date.objects.filter(worker=Workers.objects.get(id=self.kwargs['id']).id)
         return render(request, 'calendar/date.html', context)
 
 
-# def dateView(request, id):
-#     if not request.user.is_authenticated:
-#         return HttpResponseRedirect(reverse_lazy('login'))
-#     date = Date.objects.filter(worker=Workers.objects.filter(id=id))
-#     context = {
-#         'dates': date
-#     }
-#     return render(request, 'calendar/date.html', context)
+def dayView(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse_lazy('login'))
+    else:
+        dates = Date.objects.get(id=id)
+        context = {
+            'dates': dates
+        }
+        return render(request, 'calendar/day.html', context)

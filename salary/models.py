@@ -37,7 +37,10 @@ class Date(models.Model):
     clock_in = models.TimeField(blank=True, null=True)
     clock_out = models.TimeField(blank=True, null=True)
     work = models.CharField(blank=True, null=True, max_length=125)
+    type_month = models.CharField(blank=True, null=True, max_length=125)
     month = models.CharField(blank=True, null=True, max_length=125)
+
+
 
 
 

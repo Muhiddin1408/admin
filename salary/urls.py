@@ -3,7 +3,8 @@ from .views import (UserView, userProfilView,
                     AddBons, EditView, addUser,
                     SearchResultsView, salaryProfilView,
                     AddFine, AddGive,EditSalaryView,
-                    CalendarView, DateView)
+                    CalendarView, DateView,
+                    dayView)
 
 
 urlpatterns = [
@@ -19,5 +20,6 @@ urlpatterns = [
     path('add/user/', addUser, name='adduser'),
     path('calendar/', CalendarView.as_view(), name='calendar'),
     path('date/<int:id>/', DateView.as_view(), name='date'),
+    path('day/<int:id>/', dayView, name='day'),
 
 ]
