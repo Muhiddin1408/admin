@@ -2,9 +2,30 @@
 {% load static %}
 
 {% block content %}
-{% for i in dates%}
-{%if i.type_month == "3"  %}
-<a href="{% url 'day' i.id %}"><button>{{i.month}}</button></a>
-{%endif%}
-{%endfor%}
+
+
+<table>
+    <tr>
+        <td >Muhiddin</td>
+        {% for i in dates%}
+            {% if i.worker.id == 1 %}
+            <td style="border: 1px solid black;">{{i.work}}</td>
+            {% endif %}
+        {%endfor%}
+    </tr>
+    <tr>
+        <td >Muhiddin</td>
+        {% for i in dates%}
+            {% if i.worker.id == 2 %}
+            <td style="border: 1px solid black;">{{i.work}}</td>
+            {% endif %}
+        {%endfor%}
+    </tr>
+
+</table>
+
+
+
+
+
 {% endblock content %}

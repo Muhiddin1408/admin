@@ -19,7 +19,7 @@ urlpatterns = [
     path('search/', SearchResultsView.as_view(), name='search'),
     path('add/user/', addUser, name='adduser'),
     path('calendar/', CalendarView.as_view(), name='calendar'),
-    path('date/<int:id>/', DateView.as_view(), name='date'),
+    path('time/<str:type_month>/', DateView.as_view(), name='time'),
     path('day/<int:id>/', dayView, name='day'),
 
 ]

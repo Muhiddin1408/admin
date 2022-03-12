@@ -254,7 +254,7 @@ class DateView(TemplateView):
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
         context = super().get_context_data(**kwargs)
-        context['dates'] = Date.objects.filter(worker=Workers.objects.get(id=self.kwargs['id']).id)
+        context['dates'] = Date.objects.filter(type_month=self.kwargs['type_month'])
         return render(request, 'calendar/date.html', context)
 
 

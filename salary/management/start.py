@@ -100,7 +100,7 @@ def begin(update, context):
                     mint = dt%3600//60
                 hours = str(hours)
                 mint = str(mint)
-                out = hours+" soat "+mint+" minut"
+                out = hours+":"+mint
                 return out
             print("hjb",time_diff(obj.clock_out,obj.clock_in))
             m=str(obj.month).split('.')

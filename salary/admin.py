@@ -6,6 +6,7 @@ from .models import Workers, Date
 class DateAdmin(admin.ModelAdmin):
     list_display = ['month']
 
+
 class UserAdmin(admin.ModelAdmin):
     class Meta:
         model = Workers
