@@ -4,7 +4,7 @@ from .views import (UserView, userProfilView,
                     SearchResultsView, salaryProfilView,
                     AddFine, AddGive,EditSalaryView,
                     CalendarView, DateView,
-                    dayView)
+                    dayView, Startend,StartendTypeView)
 
 
 urlpatterns = [
@@ -19,7 +19,9 @@ urlpatterns = [
     path('search/', SearchResultsView.as_view(), name='search'),
     path('add/user/', addUser, name='adduser'),
     path('calendar/', CalendarView.as_view(), name='calendar'),
+    path('startend/', Startend.as_view(), name='startend'),
     path('time/<str:type_month>/', DateView.as_view(), name='time'),
+    path('startend/<str:type_month>/', StartendTypeView.as_view(), name='startendtype'),
     path('day/<int:id>/', dayView, name='day'),
 
 ]

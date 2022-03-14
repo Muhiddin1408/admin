@@ -247,6 +247,17 @@ class CalendarView(TemplateView):
         return render(request, 'calendar/calendar.html', context)
 
 
+class Startend(TemplateView):
+    model = Workers
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+        context = super().get_context_data(**kwargs)
+        context['users'] = Workers.objects.all()
+        return render(request, 'calendar/time.html', context)
+
+
 class DateView(TemplateView):
     model = Workers
 
@@ -256,6 +267,17 @@ class DateView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['dates'] = Date.objects.filter(type_month=self.kwargs['type_month'])
         return render(request, 'calendar/date.html', context)
+
+
+class StartendTypeView(TemplateView):
+    model = Workers
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
+        context = super().get_context_data(**kwargs)
+        context['dates'] = Date.objects.filter(type_month=self.kwargs['type_month'])
+        return render(request, 'calendar/startend.html', context)
 
 
 def dayView(request, id):

@@ -104,15 +104,42 @@ def begin(update, context):
                 return out
             print("hjb",time_diff(obj.clock_out,obj.clock_in))
             m=str(obj.month).split('.')
-            m=int(m[1])
-            print(m)
+            b=int(m[1])
+            if b == 1:
+                type_m = 'yanvar'
+            elif b == 2:
+                type_m = 'fevral'
+            elif b == 3:
+                type_m = 'mart'
+            elif b == 4:
+                type_m = 'aprel'
+            elif b == 5:
+                type_m = 'may'
+            elif b == 6:
+                type_m = 'iyun'
+            elif b == 7:
+                type_m = 'iyul'
+            elif b == 8:
+                type_m = 'avgust'
+
+            elif b == 9:
+                type_m = 'sentiyabr'
+            elif b == 10:
+                type_m = 'oktiyabr'
+
+            elif b == 11:
+                type_m = 'noyabr'
+            elif b == 12:
+                type_m = 'dekabr'
+            a=int(m[2])
+
             data = Date.objects.create(
                 worker=obj,
                 clock_in=obj.clock_in,
                 clock_out=obj.clock_out,
                 work=time_diff(obj.clock_out,obj.clock_in),
-                month=obj.month,
-                type_month=m)
+                month=a,
+                type_month=type_m)
             data.save()
             update.message.reply_text('Adminga yuborish uchun Yuborish tugmasini bosing!',
                                       reply_markup=ReplyKeyboardMarkup([[KeyboardButton('Yuborish!')]],

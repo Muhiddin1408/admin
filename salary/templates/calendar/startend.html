@@ -17,7 +17,7 @@
         <td >Muhiddin</td>
         {% for i in dates%}
             {% if i.worker.id == 1 %}
-            <td style="border: 1px solid black;wight:3%">{{i.work}}</td>
+            <td style="border: 1px solid black;wight:3%">{{i.clock_in}}-{{i.clock_out}}</td>
             {% endif %}
         {%endfor%}
     </tr>
@@ -25,7 +25,7 @@
         <td >Muhiddinn</td>
         {% for i in dates%}
             {% if i.worker.id == 2 %}
-            <td style="border: 1px solid black;wight:3%">{{i.work}}</td>
+            <td style="border: 1px solid black;wight:3%">{{i.clock_in}}-{{i.clock_out}}</td>
             {% endif %}
         {%endfor%}
     </tr>
