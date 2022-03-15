@@ -207,7 +207,7 @@ class AddFine(UpdateView):
         user = Workers.objects.get(id=self.kwargs['id'])
 
         user.fine += int(form.data['fine'])
-        user.residue -= int(form.data['five'])
+        user.residue -= int(form.data['fine'])
         user.save()
 
         return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
