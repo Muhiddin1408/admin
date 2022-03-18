@@ -79,7 +79,7 @@ class AddBons(UpdateView):
         user.save()
         return redirect(f'/api/admin/salaryprofil/{self.kwargs["id"]}/')
 
-#
+
 class AddUser(CreateView):
     queryset = Workers.objects.all()
 
